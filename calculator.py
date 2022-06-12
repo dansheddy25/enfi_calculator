@@ -1,21 +1,33 @@
 from cProfile import label
+from pprint import pprint
 import tkinter
+from unittest import result
 
 root = tkinter.Tk()
 root.title("Calculator")
 
+expression = ""
+
 #Create functions
 def add(value):
-    print(value)
+    global expression
+    expression += value
+    print(expression)
 
 def clear():
-    pass
+    global expression
+    expression = ""
+    label_result.config(text=expression)
 
 def calculate():
-    pass
+    global expression
+    result = eval(expression)
+    label_result.config(text=result)
+    expression = str(result)
+    
 
 #Create GUI
-label_result = tkinter.Label(root, text="42")
+label_result = tkinter.Label(root, text="")
 label_result.grid(row=0, column=0, columnspan=4)
 
 button_1 = tkinter.Button(root, text="1", command=lambda:add("1"))
