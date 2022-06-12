@@ -12,7 +12,7 @@ expression = ""
 def add(value):
     global expression
     expression += value
-    print(expression)
+    label_result.config(text=expression)
 
 def clear():
     global expression
@@ -21,9 +21,16 @@ def clear():
 
 def calculate():
     global expression
-    result = eval(expression)
+    result = ""
+    if expression != "":
+        try:
+            result = eval(expression)
+        except:
+            result = "error"
+            expression = ""
+        
     label_result.config(text=result)
-    expression = str(result)
+
     
 
 #Create GUI
